@@ -194,4 +194,56 @@ lemma exc_outside_pairs : "x : Exc \<Longrightarrow> \<not> x : PairMem"
 
 end
 
+
+subsection \<open>Everything is distinct -- every feature at once\<close>
+
+text \<open>todo lists this under "interesting choices" rather than as a paper
+  example, so the reading here is ours: the GST in which \<^emph>\<open>every\<close> feature of
+  \<^theory>\<open>GST.GST_Features\<close> is present and all of their objects are kept
+  apart, i.e. the largest \<open>AllDistinct\<close> this development can state.
+
+  \<^class>\<open>OrdRec\<close> is included even though it contributes no objects of its
+  own -- its logo is \<^term>\<open>\<bottom>\<close> -- so its disjointness with everything else
+  holds trivially and it is present only for its ordinal recursion.
+
+  The blacklist is \<^term>\<open>Exc\<close> exactly for the features with a real cargo
+  (\<^term>\<open>SetMem\<close>, \<^term>\<open>PairMem\<close>, \<^term>\<open>BinRelMem\<close>, \<^term>\<open>FunMem\<close>).
+  It is left empty for the features whose cargo is \<^term>\<open>\<top>\<close>, for the reason
+  given for \<^term>\<open>Nat\<close> above: blacklisting against a \<^term>\<open>\<top>\<close> cargo would
+  assert \<open>Exc = \<bottom>\<close> and make the class vacuous.\<close>
+
+ML \<open>val ZFdistinct_spec =
+  [ {feat = GZF,      default_val = \<^term>\<open>\<Zspot>\<close>, blacklist = [Exc]},
+    {feat = Ordinal,  default_val = \<^term>\<open>\<Zspot>\<close>, blacklist = []},
+    {feat = OrdRec,   default_val = \<^term>\<open>\<Zspot>\<close>, blacklist = []},
+    {feat = OPair,    default_val = \<^term>\<open>\<Zspot>\<close>, blacklist = [Exc]},
+    {feat = BinRel,   default_val = \<^term>\<open>\<Zspot>\<close>, blacklist = [Exc]},
+    {feat = Function, default_val = \<^term>\<open>\<Zspot>\<close>, blacklist = [Exc]},
+    {feat = Nat,      default_val = \<^term>\<open>\<Zspot>\<close>, blacklist = []},
+    {feat = Exc,      default_val = \<^term>\<open>\<Zspot>\<close>, blacklist = []} ]\<close>
+
+local_setup \<open>snd o mk_gst "ZFdistinct" ZFdistinct_spec\<close>
+
+context ZFdistinct begin
+
+lemma cover :
+  "x : Set \<or> x : Ord \<or> x : \<bottom> \<or> x : Pair \<or> x : BinRel
+     \<or> x : Function \<or> x : Nat \<or> x : Exc"
+  using fun_cong[OF cover_ax, of x]
+  unfolding has_ty_def union_ty_def Any_def by simp
+
+lemma sets_are_distinct :
+  "x : Set \<Longrightarrow> \<not> x : Ord"
+  "x : Set \<Longrightarrow> \<not> x : Pair"
+  "x : Set \<Longrightarrow> \<not> x : BinRel"
+  "x : Set \<Longrightarrow> \<not> x : Function"
+  "x : Set \<Longrightarrow> \<not> x : Nat"
+  "x : Set \<Longrightarrow> \<not> x : Exc"
+  using fun_cong[OF GZF_Ordinal_disjoint, of x] fun_cong[OF GZF_OPair_disjoint, of x]
+        fun_cong[OF GZF_BinRel_disjoint, of x] fun_cong[OF GZF_Function_disjoint, of x]
+        fun_cong[OF GZF_Nat_disjoint, of x] fun_cong[OF GZF_Exc_disjoint, of x]
+  unfolding has_ty_def inter_ty_def empty_typ_def by simp_all
+
+end
+
 end

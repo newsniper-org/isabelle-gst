@@ -200,7 +200,7 @@ class OrdRec = GZF + Ordinal +
     ordrec_lim_ax :  "\<forall>G. \<forall>F. \<forall>A. \<forall>\<mu> : Limit. 
        OrdRec G F A \<mu> = G \<mu> (\<lambda>j. if j : Ord \<and> j < \<mu> then OrdRec G F A j else OrdRec_default)"                    
 
-ML \<open>val OrdReec = Feature
+ML \<open>val OrdRec = Feature
   {cla = \<^class>\<open>OrdRec\<close>, deps = [], 
    logo = \<^term>\<open>\<bottom>\<close>, cargo = \<^term>\<open>\<top>\<close>,
    default_param = \<^term>\<open>OrdRec_default\<close>}\<close>
