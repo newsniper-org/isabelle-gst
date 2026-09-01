@@ -23,6 +23,7 @@ session GST = "HOL" +
     Relations
   theories
     "Founder/Test"
+    "Founder/GST_Examples"
     (*Theories no other theory imports, so naming Founder/Test alone left
       them unbuilt -- and therefore unchecked.*)
     "GZF/Successor"
