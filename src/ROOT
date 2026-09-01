@@ -21,5 +21,10 @@ session GST = "HOL" +
     Ordinal
     "Ordinal/Model"
     Relations
-  theories 
+  theories
     "Founder/Test"
+    (*Theories no other theory imports, so naming Founder/Test alone left
+      them unbuilt -- and therefore unchecked.*)
+    "GZF/Successor"
+    "Functions/FunctionSpace"
+    "Ordinal/DependentOrd"
