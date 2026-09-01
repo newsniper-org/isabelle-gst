@@ -7,7 +7,9 @@
 *)
 fun lift_def_open_proof iden typ rhs lthy = 
   let
-    val typ_str = YXML.content_of (Syntax.string_of_typ lthy typ)
+    (*Isabelle2026: YXML.content_of is gone; strip PIDE markup by parsing the
+      YXML body and taking its content (cf. Pure/ML/ml_compiler.ML).*)
+    val typ_str = XML.content_of (YXML.parse_body (Syntax.string_of_typ lthy typ))
   in 
     Lifting_Def_Code_Dt.lift_def_cmd
       ([], (Binding.name iden, SOME typ_str, NoSyn), rhs, []) lthy

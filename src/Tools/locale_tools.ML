@@ -189,10 +189,15 @@ fun map_expr f g = map_expr' f (fn x => x) g
 (*------ Using Interpretations of Locales ------*)
 
 (*Returns the morphism of most recent interpretation of \<open>loc\<close> in \<open>ctxt\<close> *)
-fun interp_morphism ctxt loc = 
+(*Isabelle2026: registrations are stored with their theory context stripped
+  (\<open>Locale.make_dep\<close> applies \<open>Morphism.reset_context\<close>), and mixins such as
+  \<open>Element.eq_morphism\<close> call \<open>Morphism.the_theory\<close> when applied.  So the
+  context has to be put back before the morphism is used, exactly as the
+  library itself does at every use site.*)
+fun interp_morphism ctxt loc =
   case Locale.registrations_of (Context.Proof ctxt) loc of
     [] => error ("No registration of locale " ^ loc ^ " found in context.")
-  | _  => snd (hd (Locale.registrations_of (Context.Proof ctxt) loc))
+  | reg :: _ => Morphism.set_context' ctxt (snd reg)
 
 fun interp_trm ctxt loc = Morphism.term (interp_morphism ctxt loc)
 fun interp_typ ctxt loc = Morphism.typ (interp_morphism ctxt loc)
