@@ -2,9 +2,11 @@ chapter GST
 session GST = "HOL" +
   description 
     "A framework for building Generalized Set Theories in Isabelle/HOL"
-  options 
-    [browser_info    = true, 
-     document_output = "../html/"]
+  (*HTML presentation is requested by the Makefile's "isabelle build -P html",
+    not by browser_info here, so that this session declaration stays in the
+    shape the AFP expects.*)
+  options
+    [timeout = 600]
   sessions
     "HOL-Eisbach"
     "ZFC_in_HOL"
@@ -29,3 +31,5 @@ session GST = "HOL" +
     "GZF/Successor"
     "Functions/FunctionSpace"
     "Ordinal/DependentOrd"
+  document_files
+    "root.tex"

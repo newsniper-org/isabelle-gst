@@ -4,7 +4,7 @@ begin
 
 context GZF begin
 
-text \<open>Mapping a \<lambda>-function over a set\<close>
+text \<open>Mapping a \<^emph>\<open>lambda\<close>-function over a set\<close>
 definition RepFun :: "['a, 'a \<Rightarrow> 'a] \<Rightarrow> 'a" where
   "RepFun x F \<equiv> Repl x (\<lambda>a b. b = F a)"
 

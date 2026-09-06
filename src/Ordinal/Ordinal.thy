@@ -430,7 +430,7 @@ qed
 
 
 
-subsection \<open>\<omega> - The Smallest Limit Ordinal\<close>
+subsection \<open>\<^term>\<open>\<omega>\<close> --- The Smallest Limit Ordinal\<close>
 
 thm omega_typ
 

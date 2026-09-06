@@ -5,16 +5,22 @@ High priority:
      satisfies the axioms of each model spec typeclass
  ☐ Model for Ord (?) and OrdRec
  ☐ Feature and Model for Exception
- ☐ Examples from paper:
-   ☐ ZF, ZFP, ZFO, ZFN, ZF+
-   ☐ everything is a set
-   ☐ ---- interesting choices ----
-   ☐ everything is distinct 
+ ☑ Examples from paper:
+   ☑ ZF, ZFP, ZFO, ZFN, ZF+
+   ☑ everything is a set
+   ☑ ---- interesting choices ----
+   ☑ everything is distinct
+     (Founder/GST_Examples.thy. NOTE: the paper does not spell out what
+      "everything is distinct" means as a GST; the reading there is ours.)
  ☐ HTML output
-   ☐ ROOT file for session
+   ☑ ROOT file for session
+     (every theory reachable -- four were unbuilt, and so unchecked)
    ☐ makefile to build and generate HTML on new git pushes
 
- ☐ How to prepare for AFP
+ ☑ How to prepare for AFP -- see AFP.md
+   ☑ document builds as PDF: 238 pages, 0 LaTeX errors
+   ☐ authorship / license / entry name / topic -- the copyright holders' calls
+   ☐ chapter AFP + rename src/ to the entry name (mechanical, on submission)
 
 Medium priority: 
  ☐ Model for Pair, Nat, Function

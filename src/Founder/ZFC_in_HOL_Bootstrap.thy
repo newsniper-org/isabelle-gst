@@ -268,7 +268,7 @@ ML \<open>val GZF_Function_ts =
 
 setup \<open>mk_instantiation \<^type_name>\<open>V\<close> \<^class>\<open>Function\<close> GZF_Function_ts @{thm BinRel_Function}\<close>
 
-text \<open>Removing ZFC_in_HOL names from namespace,
+text \<open>Removing \<^verbatim>\<open>ZFC_in_HOL\<close> names from namespace,
       and making names print nicely in output panel.\<close>
 (*Hide HOL constant \<open>set\<close> so we can use it as a tag in model building*)
 (* and \<open>dom\<close> so we can use it in Function/Relation locales*)

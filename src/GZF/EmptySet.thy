@@ -80,7 +80,7 @@ lemma pow_bottom :
     shows "\<emptyset> \<in> \<P> x"
   by (rule powI[OF emp_set \<open>x : Set\<close> empty_subsetI[OF \<open>x : Set\<close>]])
 
-subsection \<open>Example: Soft-typing on Power Set & Empty Set\<close>
+subsection \<open>Example: Soft-typing on Power Set and Empty Set\<close>
 (*EXAMPLE: soft-typing on power set and empty set, 
     todo: create 'examples' directory and move there.*)
 

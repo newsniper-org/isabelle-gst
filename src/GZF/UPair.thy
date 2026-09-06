@@ -4,7 +4,7 @@ begin
 
 context GZF begin
 
-subsection \<open>Unordered pairs; defined by replacement over \<P> (\<P> \<emptyset>)\<close>
+subsection \<open>Unordered pairs; defined by replacement over \<^term>\<open>\<P> (\<P> \<emptyset>)\<close>\<close>
 
 abbreviation "\<phi> x y a b \<equiv> (a = \<emptyset> \<and> b = x) \<or> (a = \<P> \<emptyset> \<and> b = y)"
 
