@@ -1,0 +1,86 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{isabelle,isabellesym}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{wasysym}
+\usepackage{textcomp}
+% \isasymbool renders as \bbbB, which needs the txmia font from txfonts
+% (isabellesym.sty:154). Loaded after amssymb so its symbol definitions win.
+\usepackage{txfonts}
+
+% `\<^enum>` is a DOCUMENT-group symbol (etc/symbols: code 0x25b8), meant for
+% list markup inside text comments, where Isabelle's markup handler renders it
+% and no macro is needed. ModelKit/Tagging.thy repurposes it as the mixfix of
+% the `Part` operator, i.e. inside TERMS -- and there the symbol goes out as
+% `\isactrlenum`, which nothing defines: not in Isabelle's own texinputs (the
+% only place isabelle.sty lives; the system TeX Live has no isabelle*.sty at
+% all), not anywhere in the Isabelle2026-RC0 tree. Define it here with the
+% glyph the symbol table assigns, so the printed operator matches what jEdit
+% shows.
+\newcommand{\isactrlenum}{\ensuremath{\blacktriangleright}}
+
+% this should be the last package used
+\usepackage{pdfsetup}
+
+% urls in roman style, theory text in math-similar italics
+\urlstyle{rm}
+\isabellestyle{it}
+
+\begin{document}
+
+\title{Isabelle/HOL/GST: A Formal Proof Environment\\ for Generalized Set Theories}
+\author{Ciar\'an Dunne \and J. B. Wells}
+
+\maketitle
+
+\begin{abstract}
+  A \emph{generalized set theory} (GST) is like a standard set theory but
+  also has non-set structured objects that can contain other structured
+  objects including sets.  This development provides Isabelle/HOL support for
+  GSTs, which are treated as type classes that combine \emph{features}
+  specifying kinds of mathematical objects, e.g., sets, ordinal numbers,
+  ordered pairs, functions, natural numbers, and an exception object.
+
+  Specialized type-like predicates called \emph{soft types} are used
+  throughout.  When a GST is assembled from features, extra axioms are
+  generated following a user-modifiable policy to fill specification gaps:
+  that every object is owned by exactly one feature, which combinations of
+  objects of different features are allowed, and what each operation returns
+  outside its intended domain.
+
+  Although a GST can be used without a model, for confidence in its
+  consistency a model is built for each GST from components that specify each
+  feature's contribution to each tier of a von-Neumann-style cumulative
+  hierarchy defined via ordinal recursion; that model is then connected to a
+  separate type which the GST occupies, using Isabelle's Lifting and Transfer
+  packages.
+
+  The development bootstraps from Paulson's \emph{ZFC in HOL}, instantiating
+  the set, ordinal, ordinal-recursion, ordered-pair and function features at
+  its type \isa{V}, which yields a GST in which every object is a set.  It
+  then assembles the example GSTs of the two papers below and builds a model
+  for one of them at a separate type.
+\end{abstract}
+
+\tableofcontents
+
+\parindent 0pt\parskip 0.5ex
+
+\section{Sources}
+
+The development accompanies:
+
+\begin{itemize}
+  \item Ciar\'an Dunne and J. B. Wells, \emph{Isabelle/HOL/GST: A Formal
+    Proof Environment for Generalized Set Theories}, 2022.
+    \url{https://arxiv.org/abs/2207.12039}
+  \item Ciar\'an Dunne, J. B. Wells and Fairouz Kamareddine,
+    \emph{Generating Custom Set Theories with Non-Set Structured Objects},
+    CICM 2021, LNCS 12833, pp. 228--244.
+    \url{https://doi.org/10.1007/978-3-030-81097-9_19}
+\end{itemize}
+
+\input{session}
+
+\end{document}

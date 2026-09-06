@@ -1,5 +1,19 @@
+# Ignore everything, then name what belongs in the repository. The
+# allow-list had only theories, ML and ROOT -- which silently left
+# src/document/root.tex OUT, even though ROOT declares
+# `document_files "root.tex"`. A fresh clone therefore could not build
+# the document at all.
 *
 !*/
 !*.thy
 !*.ML
 !*ROOT
+# The document driver ROOT names, plus any bibliography it grows.
+!*.tex
+!*.bib
+!*.sty
+# Prose that belongs to the development: README, todo, port notes.
+!*.md
+!todo
+!Makefile
+!.gitignore
